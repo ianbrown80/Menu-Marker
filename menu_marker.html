@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Sliding Menu Marker</title>
+    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet"> 
+
+    <style>
+        body {
+            width: 100%;
+            font-family: "Montserrat", sans-serif;
+        }
+        #container {
+            width: 1089px;
+            margin: 0 auto;
+            overflow: hidden;
+        }
+        #container h1, #content {
+            text-align: center;
+            width: 100%;
+            margin: 25px;
+        }
+        
+        #content { 
+            margin-top: 50px;
+            height: 1000px;
+            width: 4356px;
+            overflow: hidden;
+
+        }
+        #content > img {
+            position: relative;
+            float: left;
+            width: 1089px;
+        }
+        
+        #menu {
+            width: 440px;
+            margin: 0 auto;
+        }
+                
+        #menu > .menu_option { 
+            padding: 10px 30px;
+            list-style: none;
+            display: inline;
+            width: 25%;
+            cursor: pointer;            
+        }
+        
+        .btn_marker {
+            position:absolute;
+            border:#000 1px solid; 
+            width:0px;
+            left: 0;
+            height:10px;
+            display:none;
+        }
+        
+        #top_btn_marker {
+            border-bottom:none;
+            top:87px;
+        }
+        
+        #bottom_btn_marker {
+            border-top:none;
+            top:117px;
+        }
+        
+    </style>
+</head>
+
+<body>
+    <div id="container">
+        <h1>Animated Button Marker System</h1>
+        <div>
+            <div class="btn_marker" id="top_btn_marker"></div>
+            <ul  id="menu">
+                <li class="menu_option" id="btn1">Car</li>
+                <li class="menu_option" id="btn2">Aeroplane</li>
+                <li class="menu_option" id="btn3">Train</li>
+                <li class="menu_option" id="btn4">Ship</li>
+            </ul>
+            <div class="btn_marker" id="bottom_btn_marker"></div>
+        </div>
+
+        <div id="content">
+            <img src="images/car.jpg" alt="car"/>
+            <img src="images/plane.jpg" alt="plane"/>
+            <img src="images/train.jpg" alt="train"/>
+            <img src="images/ship.jpg" alt="ship"/>
+        </div>
+    </div>
+</body>
+
+<script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
+<script>
+   
+    $(document).ready(function() {
+    
+        initMenu(); 
+        
+    });
+    
+
+    function initMenu() {
+        
+              
+        $(".btn_marker").css({
+            left : $("#btn1").position().left + "px",
+            width : $("#btn1").outerWidth() - 2 + "px",
+            display : "block"
+        });
+        
+    }
+    
+    
+    $(".menu_option").on("click", function(event) {
+        
+        $(".btn_marker").animate({
+            left : $(this).position().left + "px",
+            width : $(this).outerWidth() - 2 + "px"
+        });
+        
+        $("img").animate({left : $(this).index() * -1089}, 500);
+                           
+    });
+   
+</script>
+
+
+
+</html>
